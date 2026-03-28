@@ -37,6 +37,8 @@
   },
   "homepage": "https://github.com/Mulei189/acquisitions#readme",
   "dependencies": {
+    "@arcjet/inspect": "^1.3.0",
+    "@arcjet/node": "^1.3.0",
     "@neondatabase/serverless": "^1.0.2",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",

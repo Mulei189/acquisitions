@@ -60,3 +60,4 @@
 {"level":"info","message":"User logged in successfully: mulei@123.com","service":"acquisition-api","timestamp":"2026-03-28T18:19:16.301Z"}
 {"level":"info","message":"User logged in successfully: mulei@123.com","service":"acquisition-api","timestamp":"2026-03-28T18:19:16.368Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [28/Mar/2026:18:19:16 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 359 \"-\" \"Thunder Client (https://www.thunderclient.com)\"","service":"acquisition-api","timestamp":"2026-03-28T18:19:16.432Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [28/Mar/2026:21:13:12 +0000] \"GET /health HTTP/1.1\" 500 95 \"-\" \"Thunder Client (https://www.thunderclient.com)\"","service":"acquisition-api","timestamp":"2026-03-28T21:13:12.735Z"}
