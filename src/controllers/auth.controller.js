@@ -1,7 +1,7 @@
 import { formatValidationErrors } from "#utils/format.js";
 import { signUpSchema, signInSchema } from "#validations/auth.validation.js";
 import logger from "#config/logger.js";
-import { createUser, LoginUser } from "#services/auth.service.js";
+import { createUser, LoginUser, logoutUser } from "#services/auth.service.js";
 import {jwttoken} from "#utils/jwt.js";
 import {cookies} from "#utils/cookies.js";
 
@@ -99,6 +99,27 @@ export const signIn = async (req, res, next) => {
             return res.status(401).json({ error: 'Invalid email or password' });
         }
 
+        next(error);
+    }
+}
+
+// Sign out controller
+export const signOut = async (req, res, next) => {
+    try {
+        // Note: Extract userId from token if needed (from JWT payload)
+        // For now, just clear the cookie
+        
+        // Call service to handle logout logic
+        await logoutUser(req.user?.id);
+
+        // Clear the token cookie
+        cookies.clearCookie(res, 'token');
+
+        res.status(200).json({ 
+            message: 'User logged out successfully' 
+        });
+    } catch (error) {
+        logger.error('Sign out error', error);
         next(error);
     }
 }

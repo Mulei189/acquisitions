@@ -76,3 +76,16 @@ export const LoginUser = async(email, password) => {
         throw new Error(`Failed to log in user: ${error.message || 'Unknown error'}`);  
     }
 }
+
+// Sign out logic
+export const logoutUser = async (userId) => {
+    try {
+        // Currently, JWT is stateless, so logout = just clear the cookie
+        // Future enhancement: Add token blacklist for invalidating tokens in database
+        logger.info(`User ${userId} logged out successfully`);
+        return { success: true };
+    } catch (error) {
+        logger.error('Error logging out user', error);
+        throw new Error('Failed to log out user');
+    }
+}
