@@ -20,7 +20,8 @@ app.use(morgan('combined', {
     },
 }));
 
-app.use(securityMiddleware); // Apply security middleware globally
+// Apply security middleware globally
+app.use(securityMiddleware); 
 
 app.get('/', (req, res) => {
     logger.info('Hello from the Acquisitions API!');

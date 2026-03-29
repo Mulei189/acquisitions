@@ -1,0 +1,29 @@
+services:
+  # Application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: acquisitions-app-dev
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.development
+    volumes:
+      # Enable hot reload with node --watch
+      - .:/app
+      - /app/node_modules
+    networks:
+      - acquisitions-dev
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes: {}
+
+networks:
+  acquisitions-dev:
+    driver: bridge

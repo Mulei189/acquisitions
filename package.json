@@ -15,6 +15,7 @@
   },
   "scripts": {
     "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
     "lint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "format": "prettier --write .",
@@ -22,7 +23,13 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node scripts/runMigrations.js",
     "db:studio": "drizzle-kit studio",
-    "db:clear": "node scripts/clearDatabase.js"
+    "db:clear": "node scripts/clearDatabase.js",
+    "dev:docker": "node scripts/docker-setup.js",
+    "dev:docker:up": "docker-compose -f docker-compose.dev.yml up -d --build",
+    "dev:docker:down": "docker-compose -f docker-compose.dev.yml down",
+    "dev:docker:logs": "docker-compose -f docker-compose.dev.yml logs -f",
+    "prod:docker:up": "docker-compose -f docker-compose.prod.yml up -d --build",
+    "prod:docker:down": "docker-compose -f docker-compose.prod.yml down"
   },
   "repository": {
     "type": "git",

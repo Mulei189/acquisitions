@@ -35,6 +35,7 @@ export const securityMiddleware = async (req, res, next) => {
 
         const decision = await client.protect(req);
 
+        // Log detailed information about blocked requests
         if(decision.isDenied() && decision.reason.isBot()){
             logger.warn(`Blocked bot request: ${req.method} ${req.originalUrl} - Reason: ${decision.reason.toString()}`, {
                 ip: req.ip,

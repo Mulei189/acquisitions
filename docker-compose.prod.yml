@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Production application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: acquisitions-app-prod
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      # Production configuration
+      - .env.production
+    networks:
+      - acquisitions-prod
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # Resource limits for production
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+networks:
+  acquisitions-prod:
+    driver: bridge
